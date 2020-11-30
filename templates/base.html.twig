@@ -2,11 +2,25 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Journées POrtes Ouvertes IUT Lyon 1{% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="{{ asset('styles.css') }}" />
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <header>
+            <div id="logo_lyon1">
+                <a href="http://www.univ-lyon1.fr" title="Accès au site web de l'Université Lyon 1"><img alt="Université Lyon 1" src="http://www.univ-lyon1.fr/images/logos/LYON1.png"></a>
+            </div>
+            <div id="logo_comue">
+                <a href="http://www.universite-lyon.fr/" title="Accès au site web de l'Université de Lyon"><img alt="Université de Lyon" src="http://www.univ-lyon1.fr/images/logos/COMUE.png"></a>
+            </div>
+        </header>
+        <main>
+            {% block body %}{% endblock %}
+        </main>
+        <footer>
+
+        </footer>
         {% block javascripts %}{% endblock %}
     </body>
 </html>

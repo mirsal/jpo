@@ -1,0 +1,64 @@
+parameters:
+    departments:
+        tcsi:
+            name: "Techniques de Commercialisation, Orientation Systèmes Industriels"
+            description: ~
+            site: "IUT Gratte-Ciel"
+        tc:
+            name: "Techniques de commercialisation"
+            description: ~
+            site: "IUT Gratte-Ciel"
+        gmp:
+            name: "Génie mécanique et productique"
+            description: ~
+            site: "IUT Gratte-Ciel"
+        geii:
+            name: "Genie Electrique et Informatique Industrielle"
+            description:
+            site: "IUT Gratte-Ciel"
+        gim:
+            name: "Génie Industriel et Maintenance"
+            description:
+            site: "IUT Gratte-Ciel"
+
+        gc:
+            name: "Génie Civil"
+            description: ~
+            site: "IUT Gratte-Ciel"
+        chimie:
+            name: "Chimie"
+            description:
+            site: "IUT Doua"
+        bio-d:
+            name: "Génie Biologique"
+            description:
+            site: "IUT Doua"
+        gcgp:
+            name: "Génie Chimique Génie des Procédés"
+            description:
+            site: "IUT Doua"
+        info-d:
+            name: "Informatique"
+            description:
+            site: "IUT Doua"
+        gea-d:
+            name: "Gestion des Entreprises et des Administrations"
+            description:
+            site: "IUT Doua"
+
+        gea-b:
+            name: "Gestion des Entreprises et des Administrations"
+            description:
+            site: "IUT Bourg-en-Bresse"
+        bio-b:
+            name: "Génie Biologique"
+            description:
+            site: "IUT Bourg-en-Bresse"
+        gte:
+            name: "Génie Thermique et Energie"
+            description:
+            site: "IUT Bourg-en-Bresse"
+        info-b:
+            name: "Informatique"
+            description:
+            site: "IUT Bourg-en-Bresse"

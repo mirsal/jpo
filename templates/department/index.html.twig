@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les départements{% endblock %}
+
+{% block body %}
+<h1>La liste des départements</h1>
+
+<div class="departments">
+    {% for id, department in departments %}
+    <div class="department {{ id }}" style="background-image: url('{{ asset('media/departments/'~id~'.jpg') }}');">
+        <a href="{{ url('department', {'slug': id}) }}">
+            <strong>{{ department.name|default('') }}</strong>
+            <p>{{ department.site }}</p>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

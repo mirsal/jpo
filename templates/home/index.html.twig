@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les journées Portes ouvertes{% endblock %}
+
+{% block body %}
+<h1>Les journées Portes ouvertes ✅</h1>
+<p>
+Bienvenue sur le site officielle des JPOV de l’IUT Lyon 1 !
+Vous allez pouvoir découvrir la formation qui vous correspond.
+Journée Portes Ouvertes Virtuels
+27 et 28 Janvier 2021 et le Samedi 27 Février 2021 au matin
+</p>
+
+Discours C.VITTON
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/RX3caUMwMiE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<ul>
+    <li>
+        <a href="{{ url('departments', [], true) }}">Les départements</a>
+    </li>
+    <li>
+        <a href="{{ url('but', [], true) }}">Le BUT</a>
+    </li>
+</ul>
+
+<hr/>
+
+<h2>Sites:</h2>
+<p>
+Site de Bourg-en-Bresse
+71, rue Peter Fink
+01000 Bourg-en-Bresse
++33 (0)4 74 45 50 50
+</p>
+<p>
+Site de Villeurbanne Gratte-Ciel
+17, rue de France
+69627 Villeurbanne Cedex
++33 (0)4 72 65 53 53
+</p>
+<p>
+Site de Villeurbanne Doua
+1, rue de la Technologie
+69622 Villeurbanne Cedex
++33 (0)4 72 69 20 00
+</p>
+{% endblock %}
