@@ -1,0 +1,84 @@
+---
+version: '3.7'
+
+services:
+
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - ../../public:/var/www/app/public
+    configs:
+      -
+        source: nginx_config
+        target: /etc/nginx/conf.d/api.conf
+    deploy:
+      labels:
+        - traefik.enable=true
+        - traefik.docker.network=traefik_reverse_proxy
+        - traefik.docker.lbswarm=true
+        - traefik.http.services.jpo-nginx.loadbalancer.server.port=80
+        - traefik.http.routers.jpo-nginx.entryPoints=web
+        - traefik.http.routers.jpo-nginx.rule=Host(`jpo.docker`)
+        - traefik.http.routers.jpo-nginx-https.entrypoints=websecure
+        - traefik.http.routers.jpo-nginx-https.rule=Host(`jpo.docker`)
+        - traefik.http.routers.jpo-nginx-https.tls=true
+        - traefik.http.routers.jpo-nginx-https.tls.certresolver=letsencrypt
+    networks:
+      fastcgi: ~
+      traefik_reverse_proxy: ~
+
+  php-fpm:
+    image: docker-registry.jpo.fr/php-fpm:latest
+    volumes:
+      - ../../:/var/www/app
+    environment:
+      TMPDIR: /tmp
+    configs:
+      - source: php_config
+        target: /usr/local/etc/php/php.ini
+    networks:
+      fastcgi: ~
+      db: ~
+
+  redis:
+    image: redis:6-alpine
+    volumes:
+      - redis_data:/data
+    networks:
+      db: ~
+
+  redis-commander:
+    image: rediscommander/redis-commander
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+    deploy:
+      labels:
+        - traefik.enable=true
+        - traefik.docker.network=traefik_reverse_proxy
+        - traefik.docker.lbswarm=true
+        - traefik.http.services.jpo-redis-commander.loadbalancer.server.port=8081
+        - traefik.http.routers.jpo-redis-commander.entryPoints=web
+        - traefik.http.routers.jpo-redis-commander.rule=Host(`redis-commander.jpo.docker`)
+        - traefik.http.routers.jpo-redis-commander-https.entrypoints=websecure
+        - traefik.http.routers.jpo-redis-commander-https.rule=Host(`redis-commander.jpo.docker`)
+        - traefik.http.routers.jpo-redis-commander-https.tls=true
+        - traefik.http.routers.jpo-redis-commander-https.tls.certresolver=letsencrypt
+    networks:
+      db: ~
+      traefik_reverse_proxy: ~
+
+configs:
+  nginx_config:
+    file: ./nginx/config/api.conf
+  php_config:
+    file: ./php-fpm/config/php.ini
+
+volumes:
+  redis_data:
+
+networks:
+  fastcgi:
+  db:
+    attachable: true
+  traefik_reverse_proxy:
+    external: true

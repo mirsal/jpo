@@ -1,0 +1,31 @@
+---
+version: '3.7'
+
+services:
+
+  portainer:
+    image: portainer/portainer
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - data:/data
+    deploy:
+      labels:
+        - traefik.enable=true
+        - traefik.docker.network=traefik_reverse_proxy
+        - traefik.docker.lbswarm=true
+        - traefik.http.services.portainer.loadbalancer.server.port=9000
+        - traefik.http.routers.portainer.entryPoints=web
+        - traefik.http.routers.portainer.rule=Host(`portainer.docker`)
+        - traefik.http.routers.portainer-https.entrypoints=websecure
+        - traefik.http.routers.portainer-https.rule=Host(`portainer.docker`)
+        - traefik.http.routers.portainer-https.tls=true
+        - traefik.http.routers.portainer-https.tls.certresolver=letsencrypt
+    networks:
+      traefik_reverse_proxy: ~
+
+volumes:
+  data:
+
+networks:
+  traefik_reverse_proxy:
+    external: true
