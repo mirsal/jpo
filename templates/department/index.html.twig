@@ -7,8 +7,8 @@
 
 <div class="departments">
     {% for id, department in departments %}
-    <div class="department {{ id }}" style="background-image: url('{{ asset('media/departments/'~id~'.jpg') }}');">
-        <a href="{{ url('department', {'slug': id}) }}">
+    <div class="department {{ id }}" style="background-image: url('/media/departments/{{ id }}.jpg');">
+        <a href="{{ path('department', {'slug': id}, true) }}">
             <strong>{{ department.name|default('') }}</strong>
             <p>{{ department.site }}</p>
         </a>
