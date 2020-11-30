@@ -1,2 +1,2 @@
-# jpo
-"Journée Portes Ouvertes" IUT Lyon1
+# Journées Portes Ouvertes
+"Journées Portes Ouvertes" IUT Lyon1
