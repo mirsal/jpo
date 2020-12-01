@@ -33,15 +33,15 @@ jobs:
           tags: jpo:latest
 
       - name: Generate static site ❄️
-        run: docker run --rm -i -v `pwd`/dist:/var/www/app/dist jpo:latest php bin/console last:dump --force-override
+        run: docker run --rm -i -v `pwd`/dist:/var/www/app/dist jpo:latest php bin/console last:dump -d dist/_files
 
       - name: Copy assets 🖼️
-        run: docker run --rm -i -v `pwd`/dist:/var/www/app/dist jpo:latest rsync -a --exclude index.php public/ dist
+        run: docker run --rm -i -v `pwd`/dist:/var/www/app/dist jpo:latest rsync -a --exclude index.php public/ dist/_files
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages # The branch the action should deploy to.
-          FOLDER: dist # The folder the action should deploy.
+          FOLDER: dist/_files # The folder the action should deploy.
           CLEAN: true # Automatically remove deleted files from the deploy branch
