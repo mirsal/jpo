@@ -32,6 +32,12 @@ jobs:
           push: false
           tags: jpo:latest
 
+      - name: Generate static site ❄️
+        run: docker run --rm -it -v ./dist:/var/www/app/dist jpo:latest php bin/console last:dump
+
+      - name: Copy assets 🖼️
+        run: docker run --rm -it -v ./dist:/var/www/app/dist jpo:latest rsync -a --exclude index.php public/ dist
+
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
