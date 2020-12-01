@@ -33,7 +33,7 @@ jobs:
           tags: jpo:latest
 
       - name: Generate static site ❄️
-        run: docker run --rm -i -v `pwd`/dist:/var/www/app/dist jpo:latest php bin/console last:dump
+        run: docker run --rm -i -v `pwd`/dist:/var/www/app/dist jpo:latest php bin/console last:dump --force-override
 
       - name: Copy assets 🖼️
         run: docker run --rm -i -v `pwd`/dist:/var/www/app/dist jpo:latest rsync -a --exclude index.php public/ dist
